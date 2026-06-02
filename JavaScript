@@ -84,3 +84,6 @@ app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando com sucesso na porta ${PORT}`);
     console.log(`🌱 Acesse: http://localhost:${PORT}`);
 });
+npm init -y
+npm install express
+node server.js
