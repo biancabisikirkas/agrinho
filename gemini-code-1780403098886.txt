@@ -1,4 +1,0 @@
-app-agrinho/
-├── package.json
-├── server.js
-└── README.md

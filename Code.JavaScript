@@ -1,0 +1,86 @@
+app-agrinho/
+├── package.json
+├── server.js
+└── README.md
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware para permitir o envio de dados em formato JSON
+app.use(express.json());
+
+// Banco de dados simulado na memória (Mock Data)
+const modulosEducativos = [
+    { id: 1, titulo: "Uso Consciente da Água no Campo", pontos: 50, concluido: false },
+    { id: 2, titulo: "Agricultura Familiar e Sustentabilidade", pontos: 60, concluido: false },
+    { id: 3, titulo: "Tecnologia e Drones no Agronegócio", pontos: 70, concluido: false }
+];
+
+const projetosEscolares = [];
+
+// ----------------------------------------
+// ROTAS DA API
+// ----------------------------------------
+
+// 1. Rota Inicial / Boas-vindas
+app.get('/', (req, res) => {
+    res.json({
+        mensagem: "Bem-vindo à API do App Agrinho 2026! 🌱",
+        status: "Online"
+    });
+});
+
+// 2. Buscar todos os módulos da Trilha do Conhecimento
+app.get('/api/modulos', (req, res) => {
+    res.status(200).json(modulosEducativos);
+});
+
+// 3. Calcular a Pegada Ecológica (Simulador Simples)
+// Espera receber: { consumoAguaLitros: 150, transporte: "onibus" }
+app.post('/api/calculadora', (req, res) => {
+    const { consumoAguaLitros, transporte } = req.body;
+
+    if (!consumoAguaLitros || !transporte) {
+        return res.status(400).json({ erro: "Por favor, preencha todos os campos para o cálculo." });
+    }
+
+    let impactoCO2 = consumoAguaLitros * 0.2; // Cálculo fictício
+    if (transporte === "carro") impactoCO2 += 2.5;
+    if (transporte === "onibus") impactoCO2 += 0.7;
+
+    res.json({
+        resultado: `Seu impacto estimado é de ${impactoCO2.toFixed(2)} kg de CO2.`,
+        dica: "Dica do Agrinho: Tente reduzir o tempo no banho e priorize caronas ou transporte coletivo!"
+    });
+});
+
+// 4. Registrar um novo projeto no Diário de Campo da Escola
+app.post('/api/projetos', (req, res) => {
+    const { nomeEscola, tituloProjeto, descricao } = req.body;
+
+    if (!nomeEscola || !tituloProjeto || !descricao) {
+        return res.status(400).json({ erro: "Todos os campos do projeto são obrigatórios." });
+    }
+
+    const novoProjeto = {
+        id: projetosEscolares.length + 1,
+        nomeEscola,
+        tituloProjeto,
+        descricao,
+        dataCriacao: new Date().toLocaleDateString('pt-BR')
+    };
+
+    projetosEscolares.push(novoProjeto);
+    res.status(201).json({ mensagem: "Projeto cadastrado com sucesso! 🚀", projeto: novoProjeto });
+});
+
+// 5. Listar os projetos escolares cadastrados
+app.get('/api/projetos', (req, res) => {
+    res.status(200).json(projetosEscolares);
+});
+
+// Inicialização do Servidor
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor rodando com sucesso na porta ${PORT}`);
+    console.log(`🌱 Acesse: http://localhost:${PORT}`);
+});
