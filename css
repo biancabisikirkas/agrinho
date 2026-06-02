@@ -1,0 +1,193 @@
+app-agrinho/
+├── package.json
+├── server.js
+├── public/
+│   ├── index.html
+│   └── style.css  <-- O código abaixo vai aqui
+└── README.md
+/* ==========================================================================
+   ESTILOS GERAIS E VARIÁVEIS (Identidade Agrinho 2026)
+   ========================================================================== */
+:root {
+    --verde-principal: #2e7d32;   /* Verde folha/natureza */
+    --verde-claro: #4caf50;       /* Detalhes e botões */
+    --verde-fundo: #f1f8e9;       /* Fundo suave ecológico */
+    --marrom-terra: #8d6e63;      /* Tons de solo/campo */
+    --texto-escuro: #263238;      /* Leitura limpa */
+    --branco: #ffffff;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --borda-raio: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--verde-fundo);
+    color: var(--texto-escuro);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   HEADER (Topo do App)
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));
+    color: var(--branco);
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL (GRID)
+   ========================================================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* ==========================================================================
+   CARDS (Módulos e Projetos)
+   ========================================================================== */
+.card {
+    background-color: var(--branco);
+    border-radius: var(--borda-raio);
+    padding: 25px;
+    box-shadow: var(--sombra);
+    border-top: 5px solid var(--verde-principal);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    color: var(--verde-principal);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS (Calculadora e Cadastro)
+   ========================================================================== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--marrom-terra);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--verde-claro);
+}
+
+/* ==========================================================================
+   BOTÕES e COMPONENTES INTERATIVOS
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    width: 100%;
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--verde-claro);
+}
+
+/* Badge de Pontuação/Inovação */
+.badge {
+    display: inline-block;
+    background-color: var(--verde-fundo);
+    color: var(--verde-principal);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-top: 10px;
+    border: 1px solid var(--verde-claro);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    body {
+        padding: 10px;
+      <link rel="stylesheet" href="style.css">
+
+<header>
+    <h1>Agrinho 2026 🌱</h1>
+    <p>Inovação e Sustentabilidade no Campo e na Cidade</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Trilha da Água</h2>
+        <p>Aprenda a economizar recursos hídricos na irrigação.</p>
+        <span class="badge">+50 Pontos</span>
+    </div>
+
+    <div class="card">
+        <h2>Diário de Campo</h2>
+        <div class="form-group">
+            <label>Nome do Projeto Escolar</label>
+            <input type="text" placeholder="Ex: Nossa Horta Orgânica">
+        </div>
+        <button class="btn">Cadastrar Projeto</button>
+    </div>
+</div>
